@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/writer.css">
+    <title>Writer</title>
+  </head>
+  <body>
+    <header>
+      <p>stored at:<span id="stored_time"></span></p>
+    </header>
+
+    <div id="notes-div">
+      <div id="template" class="note">
+        <textarea class='content'></textarea>
+        <button class='removeBtn' onclick="deleteNote()">remove</button>
+      </div>
+    </div>
+    <button onclick="addNote()">add</button>
+
+    <script src="./js/Note.js" charset="utf-8"></script>
+    <script src="./js/writer.js" charset="utf-8"></script>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+#notes-div {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+#template {
+  display: none;
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+}
+
+header {
+  text-align: right;
+}
