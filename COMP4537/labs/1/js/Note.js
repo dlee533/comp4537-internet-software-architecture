@@ -1,5 +1,4 @@
 const template = document.querySelector('#template');
-const parent = document.querySelector('#notes-div');
 
 let id = 0;
 
@@ -15,8 +14,7 @@ class Note {
     this.content = '';
   }
 
-  update = () =>  this.content = this.note.getElementsByClassName('content')[0].value;
-
-  appendNote = () => parent.appendChild(this.note);
-
+  update() {
+    this.content = this.note.getElementsByClassName('content')[0].value;
+  }
 }
