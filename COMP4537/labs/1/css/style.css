@@ -1,0 +1,67 @@
+body {
+  text-align: center;
+  font-family: monospace;
+}
+
+a.btn,
+button {
+  border: solid;
+  text-decoration: none;
+  font-weight: bolder;
+  padding: 5px;
+  margin: 10px;
+  background-color: CornflowerBlue;
+  border: solid DodgerBlue;
+  color: white;
+  border-radius: 5px;
+}
+
+.addBtn {
+  background-color: SeaGreen;
+  border: solid OliveDrab;
+}
+
+.removeBtn {
+  background-color: salmon;
+  border: solid brown;
+}
+
+#template {
+  display: none;
+}
+
+#updateMessage {
+    text-align: right;
+}
+
+#notes,
+#back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+textarea {
+    height: auto;
+    resize: none;
+    overflow: auto;
+    margin: 10px;
+    background-color: RoyalBlue;
+    color: white;
+}
+
+.content {
+  height: 80px;
+}
+
+.updateMessage {
+  text-align: right;
+}

@@ -23,18 +23,22 @@ function update() {
   // for each note stored in arr, check if any updates.
   for (let i in noteArr) noteArr[i].update();
 
-  // update localstorage
-  const updated = JSON.stringify(noteArr);
-  if (localStorage.getItem('notes') !== updated) {
-    localStorage.setItem('notes', updated);
-    updateTime();
-  }
+  // // update localstorage
+  // const updated = JSON.stringify(noteArr);
+  // if (localStorage.getItem('notes') !== updated) {
+  //   localStorage.setItem('notes', updated);
+  //   updateTime();
+  // }
+
+  //update localstorage
+  localStorage.setItem('notes', JSON.stringify(noteArr));
+  updateTime();
 }
 
 function updateTime() {
   // update html & localstorage
   const stored_at = new Date().toLocaleTimeString();
-  localStorage.setItem('stored_at', stored_at)
+  // localStorage.setItem('stored_at', stored_at)
   stored_time_span.innerHTML = stored_at;
 }
 
