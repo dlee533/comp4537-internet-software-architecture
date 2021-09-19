@@ -45,6 +45,7 @@ function retrieveNotes() {
 
 function initializeReader() {
     createPageDivs();
+    retrieveNotes();
     setInterval(retrieveNotes, intervalTime);
 }
 

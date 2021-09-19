@@ -7,7 +7,6 @@ let noteArr = [];
 function deleteNote() {
   // remove the element in DOM
   event.target.parentElement.remove();
-
   // remove the note object from arr
   noteArr = noteArr.filter(note => note.id!=event.target.value);
 }
@@ -22,14 +21,6 @@ function addNote() {
 function update() {
   // for each note stored in arr, check if any updates.
   for (let i in noteArr) noteArr[i].update();
-
-  // // update localstorage
-  // const updated = JSON.stringify(noteArr);
-  // if (localStorage.getItem('notes') !== updated) {
-  //   localStorage.setItem('notes', updated);
-  //   updateTime();
-  // }
-
   //update localstorage
   localStorage.setItem('notes', JSON.stringify(noteArr));
   updateTime();
