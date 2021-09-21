@@ -1,6 +1,7 @@
 body {
   text-align: center;
   font-family: monospace;
+  font-size: 2vh;
 }
 
 a.btn,
@@ -14,6 +15,7 @@ button {
   border: solid DodgerBlue;
   color: white;
   border-radius: 5px;
+  font-size: 2vh;
 }
 
 .addBtn {
@@ -56,6 +58,9 @@ textarea {
     margin: 10px;
     background-color: RoyalBlue;
     color: white;
+    width: 80%;
+    max-width: 500px;
+    font-size: 2vh;
 }
 
 .content {
