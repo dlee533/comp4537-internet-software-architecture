@@ -6,7 +6,7 @@ const path = require("path");
 http.createServer(function(request, response) {
     const query = url.parse(request.url, true);
     const fileName = path.basename(query.pathname);
-    const filePath = "../../" + fileName;
+    const filePath = "../" + fileName;
     fileServer.readFile(filePath, function(error, data) {
         if (error) {
             response.writeHead(404, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});

@@ -1,5 +1,5 @@
 const fs = require('fs');
-const pathToFile = '../../file.txt';
+const pathToFile = '../file.txt';
 
 exports.writeFile =
 function(text) {
