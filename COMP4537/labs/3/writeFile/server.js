@@ -4,17 +4,33 @@ const util = require('./modules/utils');
 
 http.createServer(function (req, res) {
   const text = url.parse(req.url, true).query.text;
-  let isSuccess = false;
+  let error = null;
 
   try {
     util.writeFile(text);
-    isSuccess = true;
   } catch (err) {
-    res.writeHead(400, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
-    res.end(err);
-  } finally {
-    res.writeHead(200, {'Content-Type': 'text/html', 'Access-Control-Allow-Origin': '*'});
-    res.end(`successfully written "${text}" to the file`);
+    error = err;
+  }
+
+  if (!error) {
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({
+      status: "success",
+      text: text
+    }));
+  } else {
+    res.writeHead(400, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    res.end(JSON.stringify({
+      type: error.name,
+      message: error.message,
+      field: error.field
+    }));
   }
 
 }).listen(8888);
