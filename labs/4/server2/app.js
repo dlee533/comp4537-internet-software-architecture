@@ -3,6 +3,8 @@ const url = require('url');
 const { storeWord, searchWord } = require('./modules/utils');
 const port = 3003;
 
+let numRequests = 0;
+
 // TODO: get params from request to pass to utils functions
 // TODO: write more specific condition in if and else if statements
 // TODO: better error(code + result) for undefined method in else statement
@@ -18,10 +20,9 @@ http.createServer(async (req, res) => {
 
   if (method === 'GET') {
     const q = url.parse(req.url, true);
-    console.log(q.pathname.substring(1));
-    res.end(`${searchWord(q.pathname.substring(1))}`);
+    res.end(`Request #${++numRequests}\n${searchWord(q.query.word)}`);
   } else if (method === 'POST') {
-    let body = '/?';
+    let body = '';
     req.on('data', (chunk) => {
       if (chunk != null) {
         body += chunk
@@ -29,7 +30,7 @@ http.createServer(async (req, res) => {
     })
     req.on('end', () => {
       let q = url.parse(body, true);
-      res.end(`${storeWord(q.query.word, q.query.definition)}`);
+      res.end(`Request #${++numRequests}\n${storeWord(q.query.word, q.query.definition)}`);
     })
   }
 

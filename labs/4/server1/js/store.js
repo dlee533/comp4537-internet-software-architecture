@@ -1,6 +1,6 @@
 const errorMessage = "Store request unsuccessful. Status code: ";
 const invalidSubmission = "Your submission is invalid. Please make sure your submission is not empty and does not contain numbers.";
-const rootEndpoint = "http://localhost:8888/API/definitions"; // Update root endpoint
+const rootEndpoint = "http://localhost:3003/API/definitions"; // Update root endpoint
 
 function submitRequest() {
     const word = document.getElementById("word").value.toLowerCase().trim();
