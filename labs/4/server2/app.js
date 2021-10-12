@@ -9,28 +9,28 @@ const port = 3003;
 // TODO: determine whether to validate the request param in client side vs server side vs both
 // TODO: determine whether to fine tune cors
 http.createServer(async (req, res) => {
-  let q = url.parse(req.url, true);
   const { method } = req;
-  let result;
-  let statusCode = 200;
 
-  try {
-      if (method === 'GET') {
-      result = `${await searchWord(1)}`;
-    } else if (method === 'POST') {
-      result = `${await storeWord(1, 2)}`;
-    } else {
-      throw new Error(400, 'Bad Request');
-    }
-  } catch(err) {
-    statusCode = err.code;
-    result = err.message;
-  } finally {
-    res.writeHead(statusCode, {
-      'Content-Type': 'text',
-      'Access-Control-Allow-Origin': '*'
+  res.writeHead(200, {
+    'Content-Type': 'text',
+    'Access-Control-Allow-Origin': '*'
+  })
+
+  if (method === 'GET') {
+    const q = url.parse(req.url, true);
+    console.log(q.pathname.substring(1));
+    res.end(`${searchWord(q.pathname.substring(1))}`);
+  } else if (method === 'POST') {
+    let body = '/?';
+    req.on('data', (chunk) => {
+      if (chunk != null) {
+        body += chunk
+      };
     })
-    res.end(result);
+    req.on('end', () => {
+      let q = url.parse(body, true);
+      res.end(`${storeWord(q.query.word, q.query.definition)}`);
+    })
   }
 
 }).listen(port);
