@@ -1,5 +1,3 @@
-// TODO: write to file & read from file
-// TODO: throw appropriate error in diff cases: 1. conflict(existing word), 2. invalid user input?(determine whether to validate user input in client vs server side), 3. other fs related errorsd
 let dictionary = [];
 
 class DictionaryEntry {
