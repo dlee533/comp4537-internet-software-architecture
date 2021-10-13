@@ -1,0 +1,25 @@
+div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: monospace;
+    margin: 10px;
+}
+
+input, button {
+    margin: 15px;
+    padding: 5px;
+    font-size: 4vh;
+    border: solid grey;
+    font-family: monospace;
+}
+
+h1 {
+    font-size: 4vh;
+    text-align: center;
+}
+
+p {
+    font-size: 3vh;
+    word-wrap: break-word;
+}
