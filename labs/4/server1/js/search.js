@@ -1,6 +1,6 @@
 const errorMessage = "Search request unsuccessful. Status code: ";
 const invalidSubmission = "Your submission is invalid. Please make sure your submission is not empty and does not contain numbers.";
-const endpoint = "http://dlee533.me/api/definitions/?word="; // Update root endpoint
+const endpoint = "https://dlee533.me/api/definitions/?word="; // Update root endpoint
 // const endpoint = "http://localhost:8083/?word=";
           
 function submitRequest() {
