@@ -6,20 +6,27 @@ const endpoint = '/api/definitions/';
 
 const port = 8083;
 
-let numRequests = 0;
+let requestNum = 0;
 
 http.createServer(async (req, res) => {
   const { method } = req;
   const q = url.parse(req.url, true);
 
-  res.writeHead(200, {
-    'Content-Type': 'text/plain',
-    'Access-Control-Allow-Origin': '*',
-  })
+  if (q.pathname === endpoint) {
 
-  if (method === 'GET' && q.pathname === endpoint) {
-    res.end(`Request #${++numRequests}\n${searchWord(q.query.word)}`);
-  } else if (method === 'POST' && q.pathname === endpoint) {
+    if (method === 'GET') {
+      res.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      })
+      let resBody = searchWord(q.query.word);
+      resBody.requestNum = ++requestNum;
+      res.end(JSON.stringify(resBody));
+    } else if (method === 'POST') {
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    })
     let body = '';
     req.on('data', (chunk) => {
       if (chunk != null) {
@@ -28,10 +35,18 @@ http.createServer(async (req, res) => {
     })
     req.on('end', () => {
       const bodyQ = url.parse(body, true);
-      res.end(`Request #${++numRequests}\n${storeWord(bodyQ.query.word, bodyQ.query.definition)}`);
+      let resBody = storeWord(bodyQ.query.word, bodyQ.query.definition);
+      resBody.requestNum = ++requestNum;
+      res.end(JSON.stringify(resBody));
     })
+  } else {
+    res.writeHead(405, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    })
+    res.send(JSON.stringify({ success: false, message: 'method not allowed', requestNum: ++requestNum }));
   }
-
+}
 }).listen(port);
 
 console.log('Server is running and listening');

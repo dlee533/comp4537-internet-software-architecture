@@ -13,13 +13,14 @@ class DictionaryEntry {
 
 exports.storeWord = function(word, definition) {
   const entry = dictionary.find(entry => entry.word === word)
-  if (entry) return `'${word}' already exists`
+  if (entry) return { success: false, message: `word '${word}' already exists` };
   const newEntry = new DictionaryEntry(word, definition);
   dictionary.push(newEntry);
-  return newEntry;
+  return { success: true, message: `${newEntry}` };
 }
 
 exports.searchWord = function(word) {
   const entry = dictionary.find(entry => entry.word === word)
-  return entry ? entry : `'${word}' does not exists in the dictionary`;
+  if (!entry) return { success: false, message: `word '${word}' does not exist` };
+  return { success: true, message: `${entry}`};
 }
