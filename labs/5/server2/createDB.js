@@ -16,4 +16,4 @@ for (let i = 0; i < queryArr.length; i++) {
   })
 }
 
-sql.end();
+connection.end();
